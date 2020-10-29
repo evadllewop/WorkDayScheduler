@@ -2,12 +2,12 @@
 var timeBlocks = $(".time-block");
 var currentDay = $("#currentDay");
 
+// set variables for day and time
 var currentDate = moment().format("dddd, MMMM Do YYYY");
 var currentHour = moment().format("H");
 
 currentDay.text(currentDate);
 
-// $(document).ready(function () {
 // listen for save button clicks
 $(".saveBtn").on("click", function () {
     // get nearby values
@@ -18,13 +18,14 @@ $(".saveBtn").on("click", function () {
     localStorage.setItem(time, value);
 });
 
+// style timeBlocks according to past, present or future times
 function styleTimeBlocks() {
 
-    // set styles of timeblocks depending on time of day
+    // check each timeBlock for time of day
     $(".time-block").each(function () {
         var thisBlockHr = parseInt($(this).attr("id").split("-")[1]);
 
-        // check if we've moved past this time
+        // add and remove color classes
         if (thisBlockHr == currentHour) {
             $(this).addClass("present").removeClass("past future");
         }
@@ -49,5 +50,3 @@ $("#hour-14 .description").val(localStorage.getItem("hour-14"));
 $("#hour-15 .description").val(localStorage.getItem("hour-15"));
 $("#hour-16 .description").val(localStorage.getItem("hour-16"));
 $("#hour-17 .description").val(localStorage.getItem("hour-17"));
-
-

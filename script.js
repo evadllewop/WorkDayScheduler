@@ -6,16 +6,18 @@ var currentDay = $("#currentDay");
 var currentDate = moment().format("dddd, MMMM Do YYYY");
 var currentHour = moment().format("H");
 
+// add current date to jumbotron
 currentDay.text(currentDate);
 
-// listen for save button clicks
+// get event description and time on button click
 $(".saveBtn").on("click", function () {
-    // get nearby values
-    var value = $(this).siblings(".description").val();
-    var time = $(this).parent().attr("id");
+
+    var eventDes = $(this).siblings(".description").val().trim();
+    var eventTime = $(this).parent().attr("id");
+    // console.log(this);
 
     // save in localStorage
-    localStorage.setItem(time, value);
+    localStorage.setItem(eventTime, eventDes);
 });
 
 // style timeBlocks according to past, present or future times

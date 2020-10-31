@@ -9,17 +9,6 @@ var currentHour = moment().format("H");
 // add current date to jumbotron
 currentDay.text(currentDate);
 
-// get event description and time on button click
-$(".saveBtn").on("click", function () {
-
-    var eventDes = $(this).siblings(".description").val().trim();
-    var eventTime = $(this).parent().attr("id");
-    // console.log(this);
-
-    // save in localStorage
-    localStorage.setItem(eventTime, eventDes);
-});
-
 // style timeBlocks according to past, present or future times
 function styleTimeBlocks() {
 
@@ -42,7 +31,18 @@ function styleTimeBlocks() {
 
 styleTimeBlocks();
 
-// load saved data from localStorage
+// get event description and time on button click
+$(".saveBtn").on("click", function () {
+
+    var eventDesc = $(this).siblings(".description").val().trim();
+    var eventTime = $(this).parent().attr("id");
+    // console.log(this);
+
+    // save to localStorage
+    localStorage.setItem(eventTime, eventDesc);
+});
+
+// get saved data from localStorage
 $("#hour-9 .description").val(localStorage.getItem("hour-9"));
 $("#hour-10 .description").val(localStorage.getItem("hour-10"));
 $("#hour-11 .description").val(localStorage.getItem("hour-11"));
